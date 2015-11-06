@@ -11,4 +11,18 @@ class UserRegistrationTest < ActionDispatch::IntegrationTest
     assert_equal user_path(User.find_by_username("Torie")), current_path
     assert page.has_content?("Torie's Favourites")
   end
+
+  test "guess can't register with taken username" do
+    User.create(username: "Ryan", password: "Bieber")
+
+    visit new_user_path
+
+    fill_in "Username", with: "Ryan"
+    fill_in "Password", with: "password"
+    click_button "Create Account"
+
+    save_and_open_page
+    assert_equal new_user_path, current_path
+    assert page.has_content?("Username already taken")
+  end
 end

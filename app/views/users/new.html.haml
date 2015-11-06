@@ -1,3 +1,6 @@
+-flash.each do |type, msg|
+  =content_tag :div, msg, class: "flash_#{type}"
+
 %h1 Create account:
 
 = form_for(User.new) do |f|
