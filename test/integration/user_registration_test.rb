@@ -36,7 +36,6 @@ class UserRegistrationTest < ActionDispatch::IntegrationTest
   end
 
   test "guest can't register without password" do
-    skip
     visit new_user_path
 
     fill_in "Username", with: "chocolate"
