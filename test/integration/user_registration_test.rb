@@ -21,8 +21,28 @@ class UserRegistrationTest < ActionDispatch::IntegrationTest
     fill_in "Password", with: "password"
     click_button "Create Account"
 
-    save_and_open_page
     assert_equal new_user_path, current_path
     assert page.has_content?("Username already taken")
+  end
+
+  test "guest can't register without username" do
+    visit new_user_path
+
+    fill_in "Password", with: "chocolate"
+    click_button "Create Account"
+
+    assert_equal new_user_path, current_path
+    assert page.has_content?("Username can't be blank")
+  end
+
+  test "guest can't register without password" do
+    skip
+    visit new_user_path
+
+    fill_in "Username", with: "chocolate"
+    click_button "Create Account"
+
+    assert_equal new_user_path, current_path
+    assert page.has_content?("Password can't be blank")
   end
 end
