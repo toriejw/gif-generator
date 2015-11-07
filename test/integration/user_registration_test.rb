@@ -22,7 +22,7 @@ class UserRegistrationTest < ActionDispatch::IntegrationTest
     click_button "Create Account"
 
     assert_equal new_user_path, current_path
-    assert page.has_content?("Username already taken")
+    assert page.has_content?("Username has already been taken")
   end
 
   test "guest can't register without username" do
