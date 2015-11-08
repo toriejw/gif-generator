@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @categories = Category.all
   end
 
   def favourite

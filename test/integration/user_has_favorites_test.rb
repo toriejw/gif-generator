@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class UserHasFavoritesTest < ActionDispatch::IntegrationTest
-  def favorite_gif(user, gif)
-    user.gifs << gif
-  end
-
   test "user can mark gif as favorite" do
     user = login_user
     create_gif

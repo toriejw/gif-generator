@@ -2,5 +2,10 @@
 
 = link_to "All Gifs", gifs_path
 
-- current_user.gifs.each do |gif|
-  = image_tag(gif.url)
+- @categories.each do |category|
+  %div{class: "#{category.name}"}
+    %h2= "#{category.name.capitalize}"
+    - category.gifs.each do |gif|
+      - if current_user.gifs.include?(gif)
+        .gif
+          = image_tag(gif.url)

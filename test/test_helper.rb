@@ -32,6 +32,10 @@ class ActionDispatch::IntegrationTest
     "http://media3.giphy.com/media/WTl5quTRtvj32/giphy.gif"
   end
 
+  def favorite_gif(user, gif)
+    user.gifs << gif
+  end
+
   def teardown
     reset_session!
   end
