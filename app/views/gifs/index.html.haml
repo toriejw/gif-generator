@@ -3,4 +3,4 @@
 - @gifs.each do |gif|
   .gif
     = image_tag(gif.url)
-    = link_to "Favourite", gifs_path
+    = link_to("Favourite", favourites_path(gif: gif.id), method: :post)

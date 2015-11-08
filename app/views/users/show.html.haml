@@ -1,3 +1,6 @@
 %h1= "#{current_user.username}'s Favourites"
 
 = link_to "All Gifs", gifs_path
+
+- current_user.gifs.each do |gif|
+  = image_tag(gif.url)

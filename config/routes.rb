@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   get '/login', to: 'session#new'
   post '/login', to: 'session#create'
 
+  resources :favourites, only: [:create]
+
   resources :gifs, only: [:index]
 end
