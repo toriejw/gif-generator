@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :index, :create, :show]
   get '/login', to: 'session#new'
   post '/login', to: 'session#create'
+
+  resources :gifs, only: [:index]
 end
