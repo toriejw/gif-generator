@@ -14,6 +14,23 @@ end
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
+  def login_user
+    user = User.create(username: "Aria", password: "starwars")
+    visit login_path
+    fill_in "Username", with: "Aria"
+    fill_in "Password", with: "starwars"
+    click_button "Login"
+    user
+  end
+
+  def create_gif
+    Gif.create(url: gif_source)
+  end
+
+  def gif_source
+    "http://media3.giphy.com/media/WTl5quTRtvj32/giphy.gif"
+  end
+
   def teardown
     reset_session!
   end

@@ -1,4 +1,6 @@
 %h1 All Gifs
 
 - @gifs.each do |gif|
-  = image_tag(gif.url)
+  .gif
+    = image_tag(gif.url)
+    = link_to "Favourite", gifs_path
