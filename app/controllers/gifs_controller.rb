@@ -7,8 +7,6 @@ class GifsController < ApplicationController
   response = connection.get(request)
 
   def index
-    @gifs = Gif.all
+    @categories = Category.all
   end
-
-  
 end

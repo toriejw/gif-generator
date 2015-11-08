@@ -1,9 +1,12 @@
 %h1 All Gifs
 
-- @gifs.each do |gif|
-  .gif
-    = image_tag(gif.url)
-    - if current_user.gifs.include?(gif)
-      = link_to("Unfavourite", favourite_path(Favourite.where(gif_id: gif.id, user_id: current_user.id), gif: gif.id), method: :delete)
-    - else
-      = link_to("Favourite", favourites_path(gif: gif.id), method: :post)
+- @categories.each do |category|
+  %div{class: "#{category.name}"}
+    %h2= "#{category.name.capitalize}"
+    - category.gifs.each do |gif|
+      .gif
+        = image_tag(gif.url)
+        - if current_user.gifs.include?(gif)
+          = link_to("Unfavourite", favourite_path(Favourite.where(gif_id: gif.id, user_id: current_user.id), gif: gif.id), method: :delete)
+        - else
+          = link_to("Favourite", favourites_path(gif: gif.id), method: :post)

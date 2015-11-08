@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108190548) do
+ActiveRecord::Schema.define(version: 20151108202654) do
+
+  create_table "categories", force: :cascade do |t|
+    t.text     "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "favourites", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,9 +31,12 @@ ActiveRecord::Schema.define(version: 20151108190548) do
 
   create_table "gifs", force: :cascade do |t|
     t.text     "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "category_id"
   end
+
+  add_index "gifs", ["category_id"], name: "index_gifs_on_category_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

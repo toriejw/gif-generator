@@ -24,7 +24,8 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_gif
-    Gif.create(url: gif_source)
+    category = Category.create(name: "dog")
+    Gif.create(url: gif_source, category_id: category.id)
   end
 
   def gif_source
