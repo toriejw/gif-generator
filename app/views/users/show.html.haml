@@ -1,6 +1,5 @@
 %h1= "#{current_user.username}'s Favourites"
-
-= link_to "All Gifs", gifs_path
+%br
 - if current_user.admin?
   = link_to "Dashboard", admin_categories_path
 

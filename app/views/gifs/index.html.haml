@@ -1,4 +1,7 @@
 %h1 All Gifs
+%br
+- if current_user.admin?
+  =link_to("Dashboard", admin_categories_path)
 
 - @categories.each do |category|
   %div{class: "#{category.name}"}
