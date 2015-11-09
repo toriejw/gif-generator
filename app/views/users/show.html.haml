@@ -1,6 +1,8 @@
 %h1= "#{current_user.username}'s Favourites"
 
 = link_to "All Gifs", gifs_path
+- if current_user.admin?
+  = link_to "Dashboard", admin_categories_path
 
 - @categories.each do |category|
   %div{class: "#{category.name}"}

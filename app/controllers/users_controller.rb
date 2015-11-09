@@ -16,10 +16,7 @@ class UsersController < ApplicationController
   def show
     @categories = Category.all
   end
-
-  def favourite
-  end
-
+  
   private
 
   def user_params
