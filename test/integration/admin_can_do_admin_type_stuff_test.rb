@@ -87,4 +87,11 @@ class AdminCanDoAdminTypeStuffTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("404")
   end
+
+  test "" do
+    login_user
+    user2 = User.create(username: "Kayla", password: "baseball")
+
+    visit user_path(user2)
+  end
 end

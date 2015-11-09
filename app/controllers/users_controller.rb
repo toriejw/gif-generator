@@ -15,8 +15,13 @@ class UsersController < ApplicationController
 
   def show
     @categories = Category.all
+    if session[:user_id] != params[:id].to_i
+      render file: '/public/404'
+    else
+      render "show"
+    end
   end
-  
+
   private
 
   def user_params
