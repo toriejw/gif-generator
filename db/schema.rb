@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151109015120) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.text     "name"
     t.datetime "created_at", null: false
@@ -26,8 +29,8 @@ ActiveRecord::Schema.define(version: 20151109015120) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "favourites", ["gif_id"], name: "index_favourites_on_gif_id"
-  add_index "favourites", ["user_id"], name: "index_favourites_on_user_id"
+  add_index "favourites", ["gif_id"], name: "index_favourites_on_gif_id", using: :btree
+  add_index "favourites", ["user_id"], name: "index_favourites_on_user_id", using: :btree
 
   create_table "gifs", force: :cascade do |t|
     t.text     "url"
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 20151109015120) do
     t.integer  "category_id"
   end
 
-  add_index "gifs", ["category_id"], name: "index_gifs_on_category_id"
+  add_index "gifs", ["category_id"], name: "index_gifs_on_category_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -46,4 +49,7 @@ ActiveRecord::Schema.define(version: 20151109015120) do
     t.integer  "role"
   end
 
+  add_foreign_key "favourites", "gifs"
+  add_foreign_key "favourites", "users"
+  add_foreign_key "gifs", "categories"
 end
