@@ -74,10 +74,10 @@ class AdminCanDoAdminTypeStuffTest < ActionDispatch::IntegrationTest
     assert page.has_content?("404")
   end
 
-  test "user can't delete category" do
+  test "user can't delete category or gif" do
     login_user
     visit gifs_path
-    
+
     refute page.has_link?("Delete")
   end
 end
