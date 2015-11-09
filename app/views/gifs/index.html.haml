@@ -10,3 +10,6 @@
           = link_to("Unfavourite", favourite_path(Favourite.where(gif_id: gif.id, user_id: current_user.id), gif: gif.id), method: :delete)
         - else
           = link_to("Favourite", favourites_path(gif: gif.id), method: :post)
+        |
+        - if current_user.admin?
+          = link_to("Delete", gif_path(gif), method: :delete)

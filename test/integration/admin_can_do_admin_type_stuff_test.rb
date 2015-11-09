@@ -46,4 +46,12 @@ class AdminCanDoAdminTypeStuffTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Dog")
   end
 
+  test "admin can delete a gif" do
+    create_gif
+    login_admin
+
+    click_link "All Gifs"
+    first(".gif").click_link("Delete")    
+  end
+
 end
