@@ -31,15 +31,6 @@ class AdminCanDoAdminTypeStuffTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Nala's Dashboard")
   end
 
-  test "User can't see dashboard" do
-    login_user
-
-    refute page.has_content?("Dashboard")
-
-    visit '/admin/categories'
-    assert page.has_content?("404")
-  end
-
   test "Admin can create gif" do
     login_admin
 
@@ -74,4 +65,19 @@ class AdminCanDoAdminTypeStuffTest < ActionDispatch::IntegrationTest
     refute page.has_content?("Dog")
   end
 
+  test "User can't see dashboard" do
+    login_user
+
+    refute page.has_content?("Dashboard")
+
+    visit '/admin/categories'
+    assert page.has_content?("404")
+  end
+
+  test "user can't delete category" do
+    login_user
+    visit gifs_path
+    
+    refute page.has_link?("Delete")
+  end
 end
