@@ -3,6 +3,8 @@
 - @categories.each do |category|
   %div{class: "#{category.name}"}
     %h2= "#{category.name.capitalize}"
+    %div{class: "delete_#{category.name}"}
+      = link_to("Delete", admin_category_path(category), method: :delete)
     - category.gifs.each do |gif|
       .gif
         = image_tag(gif.url)

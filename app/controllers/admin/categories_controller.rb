@@ -17,6 +17,14 @@ class Admin::CategoriesController < Admin::BaseController
     redirect_to gifs_path
   end
 
+  def destroy
+    category = Category.find(params[:id])
+    category.gifs.delete_all
+    category.destroy
+
+    redirect_to gifs_path
+  end
+
   def get_gif(search_terms)
     api_key = "dc6zaTOxFJmzC"
     search_terms = search_terms.split(" ").join("+")

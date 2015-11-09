@@ -14,6 +14,15 @@ class AdminCanDoAdminTypeStuffTest < ActionDispatch::IntegrationTest
     click_button "Login"
   end
 
+  def create_dog_gif(num)
+    num.times do
+      visit new_admin_category_path
+
+      fill_in "Name", with: "dog"
+      click_button "Create Gif"
+    end
+  end
+
   test "admin can see dashboard" do
     login_admin
     click_link "Dashboard"
@@ -51,7 +60,18 @@ class AdminCanDoAdminTypeStuffTest < ActionDispatch::IntegrationTest
     login_admin
 
     click_link "All Gifs"
-    first(".gif").click_link("Delete")    
+    first(".gif").click_link("Delete")
+
+    refute page.has_css?("img")
+  end
+
+  test "admin can delete a caterory" do
+    login_admin
+    create_dog_gif(2)
+    first(".delete_dog").click_link("Delete")
+
+    refute page.has_css?("img")
+    refute page.has_content?("Dog")
   end
 
 end
