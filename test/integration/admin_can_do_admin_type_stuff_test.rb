@@ -80,4 +80,11 @@ class AdminCanDoAdminTypeStuffTest < ActionDispatch::IntegrationTest
 
     refute page.has_link?("Delete")
   end
+
+  test "user can't add gif" do
+    login_user
+    visit '/admin/categories/new'
+
+    assert page.has_content?("404")
+  end
 end
